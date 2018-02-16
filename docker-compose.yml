@@ -1,0 +1,41 @@
+version: '3.0'
+
+services:
+
+  nginx:
+    container_name: app-hotel
+    image: nginx
+    build:
+      context: ./app-hotel
+      dockerfile: .docker/nginx.dockerfile
+    volumes:
+      - ./app-hotel/app:/usr/share/nginx/html
+    ports:
+      - "80:80"
+      - "443:443"
+
+    networks:
+      - app-network
+
+  node:
+    container_name: api-hotel
+    image: nodeapp
+    build:
+      context: ./api-hotel
+      dockerfile: .docker/node.development.dockerfile
+    ports:
+      - "3000:3000"
+    depends_on: 
+      - mongodb
+    networks:
+      - app-network
+      
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

@@ -1,0 +1,38 @@
+<form [formGroup]="form" >
+  <div class="filter-area">
+    <div class="filter-head text-center">
+      <h4>Filtros</h4>
+    </div>
+    <div class="name-filter filter">
+      <h5>
+        <i class="fa ">
+          <svg-icon src="./assets/icons/filters/search.svg" style="width: 20px;
+          fill: antiquewhite;"></svg-icon>
+        </i>
+        Nombre del Hotel </h5>
+      <div class="input-group margin-bottom-sm">
+        <input type="text" formControlName="name" class="form-control" required placeholder="Ingrese el nombre del hotel">
+        <span class="input-group-addon" >
+          <i class="fa " (click)="findByHotels(form.value,-1)">
+            <svg-icon src="./assets/icons/filters/search.svg" style="width:25px;"></svg-icon>
+          </i>
+        </span>
+      </div>
+    </div>
+    <div class="star-filter filter">
+      <h5>
+        <i class="fa ">
+          <svg-icon src="./assets/icons/filters/star.svg" style="fill:antiquewhite;width:25px;"></svg-icon>
+        </i>
+        Estrellas</h5>
+      <ul>
+        <li *ngFor="let star of stars.controls; let i=index">
+          <input type="checkbox" [formControl]="star" (click)="findByHotels(form.value,i)">
+          <b *ngIf="i==0">Todas las Estrellas</b>
+          <i *ngFor="let n of [] | range:6-i" class="fa">
+            <svg-icon *ngIf="i>0" src="./assets/icons/filters/star.svg" style="fill:#f1f100;width:25px;"></svg-icon>
+          </i>
+      </ul>
+    </div>
+  </div>
+</form>

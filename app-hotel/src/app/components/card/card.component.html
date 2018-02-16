@@ -1,0 +1,29 @@
+<div class="clearfix"></div>
+<div class="hotel-list-view">
+  <div class="col-md-4 col-sm-12 clear-padding">
+    <img src="{{urlImage}}{{hotel.image}}" alt="cruise">
+  </div>
+  <div class="col-md-6 col-sm-12 hotel-info">
+    <div class="hotel-header">
+      <h5>{{hotel.name}}</h5>
+      <p>
+        <i *ngFor="let n of [] | range:hotel.stars" class="fa">
+          <svg-icon src="./assets/icons/filters/star.svg" style="fill:#f1f100;width:25px;"></svg-icon>
+        </i>
+      </p>
+      <p>
+        <i *ngFor="let amenity of hotel.amenities" class="fa">
+          <svg-icon src="./assets/icons/amenities/{{amenity}}.svg" style="width:20px;"></svg-icon>
+        </i>
+      </p>
+    </div>
+  </div>
+  <div class="clearfix visible-sm-block"></div>
+  <div class="col-md-2 text-center clear-padding">
+    <div class="room-book-box">
+      <h6>Precio por Noche por habitación </h6>
+      <h5>ARS {{hotel.price}}</h5>
+      <a href="#">Ver Hotel</a>
+    </div>
+  </div>
+</div>

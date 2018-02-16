@@ -1,0 +1,18 @@
+<div class="site-wrapper">
+    <app-header></app-header>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="container">
+            <div class="col-md-3 clear-padding">
+                <app-search (find)="findyByNameOrStars($event)"></app-search>
+            </div>
+            <div class="col-md-9 hotel-listing">
+                <app-card *ngFor="let hotel of hotels | paginate: { itemsPerPage: 5, currentPage: p }" [hotel]="hotel"></app-card>
+                <div class="clearfix"></div>
+                <div  class="bottom-pagination">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
